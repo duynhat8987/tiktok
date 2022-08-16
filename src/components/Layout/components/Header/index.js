@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faSpinner, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faMagnifyingGlass, faSpinner, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 
 import { Wrapper as PopperWrapper } from '../Popper';
 import styles from './Header.module.scss';
 import images from '../../../../assets/images/logo.svg';
+import Button from '../../../../components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +19,7 @@ function Header() {
             setSearchResult([1, 2, 3]);
         }, 0);
     }, []);
+    <Button />;
     return (
         <header className={cx('wrapper')}>
             <div className={cx('logo')}>
@@ -28,7 +30,9 @@ function Header() {
                         visible={searchResult.length > 0}
                         render={(attrs) => (
                             <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                                <PopperWrapper>Ket qua</PopperWrapper>
+                                <PopperWrapper>
+                                    <h4 className={cx('search-title')}>Accounts</h4>
+                                </PopperWrapper>
                             </div>
                         )}
                     >
@@ -46,7 +50,9 @@ function Header() {
                             </button>
                         </div>
                     </Tippy>
-                    <div className={cx('actions')}></div>
+                    <div className={cx('actions')}>
+                        <Button>Upload</Button>
+                    </div>
                 </div>
             </div>
         </header>
